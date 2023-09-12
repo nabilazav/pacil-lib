@@ -4,9 +4,9 @@ from django.shortcuts import render
 
 def show_main(request):
     context = {
-        'name': 'Harry Potter',
-        'amount': "7",
-        'description': "Novels", 
+        'nama_aplikasi': 'Pacil Library Page',
+        'nama': "Nabila Zavira",
+        'kelas': "PBP D", 
     }
 
     return render(request, "main.html", context)
