@@ -1,8 +1,42 @@
-<h1>Pacil Library Page</h1>
+{% extends 'base.html' %}
+{% block content %}  
+    <h1>Pacil Library Page</h1>
 
-<h5>Nama Aplikasi: </h5>
-<p>{{ nama_aplikasi }}</p> 
-<h5>Nama: </h5>
-<p>{{ nama }}</p> 
-<h5>Kelas: </h5>
-<p>{{ kelas }}</p>
+    <h5>Nama Aplikasi: </h5>
+    <p>{{ nama_aplikasi }}</p> 
+
+    <h5>Nama: </h5>
+    <p>{{ nama }}</p> 
+
+    <h5>Kelas: </h5>
+    <p>{{ kelas }}</p>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Date Added</th>
+    </tr>
+
+    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+    {% for item in items %}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.amount}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.date_added}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br />
+
+<a href="{% url 'main:create_item' %}">
+    <button>
+        Add New Item
+    </button>
+</a>
+
+{% endblock content %}

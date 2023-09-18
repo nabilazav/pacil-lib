@@ -1,5 +1,6 @@
 Link Aplikasi: https://pacil-lib-23.adaptable.app/main/ 
 
+# TUGAS 2
 # Jelaskan bagaimana cara kamu mengimplementasikan checklist 
 
 # Membuat proyek Django Baru
@@ -25,7 +26,7 @@ Link Aplikasi: https://pacil-lib-23.adaptable.app/main/
 # Membuat model pada aplikasi main dengan nama Item dan memiliki atribut wajib
 - Membuka file "models.py" pada direktori "main" dan tambahkan 
 "from django.db import models
-class Product(models.Model):
+class Item(models.Model):
     name = models.CharField(max_length=255)
     date_added = models.DateField(auto_now_add=True)
     amount = models.IntegerField()
@@ -91,3 +92,155 @@ Model-View-ViewModel (MVVM):
    Perbedaan utama dengan MVC dan MVVM: MVT biasanya terkait dengan kerangka kerja Django dalam pengembangan web, dengan ciri khas penggunaan template dalam penyajian data.
    Perbedaan utama dengan MVC dan MVT: MVVM memisahkan tampilan dari logika bisnis dengan lebih kuat daripada MVC atau MVT. Dalam MVVM, ViewModel bertanggung jawab untuk mengatur data dan interaksi, sehingga tampilan dapat lebih independen dan mudah diuji.
 
+
+# TUGAS 3
+#  Apa perbedaan antara form POST dan form GET dalam Django?
+- Dalam hal pengiriman data, POST adalah data dikirim dalam tubuh permintaan HTTP, tidak terlihat di URL. Sedangkan, GET adalah data dikirim sebagai parameter query string di URL.
+- Dalam hal keamanan, POST lebih aman karena data tidak terlihat di URL. Sedangkan, GET kurang aman karena data terlihat di URL.
+- Dalam hal ukuran data, POST cocok untuk data besar. Sedangkan, GET lebih cocok untuk data kecil.
+- Dalam hal cacheability, POST tidak dapat di-cache. Sedangkan, GET dapat di-cache.
+- Selain itu, POST dapat mengubah data. Sedangkan, GETtidak mengubah data.
+
+# Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+XML (eXtensible Markup Language):
+- Digunakan untuk mengorganisasi dan menyimpan data dalam format yang terstruktur.
+- Berfokus pada struktur data dan hierarki.
+- Sering digunakan untuk pertukaran data antara sistem yang berbeda atau penyimpanan data terstruktur.
+- Validasi data dapat diimplementasikan dengan mudah menggunakan skema XML.
+
+JSON (JavaScript Object Notation):
+- Digunakan untuk pertukaran data antara aplikasi, terutama dalam pengembangan web dan API.
+- Format data yang sederhana, mudah dibaca oleh manusia, dan lebih ringkas daripada XML.
+- Sering digunakan dalam komunikasi antara server dan klien dalam pengembangan web modern.
+- Cocok untuk struktur data yang lebih fleksibel, seperti objek dan daftar.
+
+HTML (HyperText Markup Language):
+- Digunakan untuk merender dan menampilkan konten web di browser.
+- Tidak cocok untuk pertukaran data terstruktur; tujuannya adalah untuk tampilan dan format halaman web.
+- Menggunakan markup (tag) untuk mengatur tampilan dan hubungan antara elemen-elemen di halaman web.
+
+# Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+JSON sering digunakan dalam aplikasi web modern karena simpel, mudah dibaca, ringan, dan kompatibel dengan JavaScript. JSON juga mendukung tipe data umum, dan mudah digunakan dalam berbagai bahasa pemrograman. Dengan fleksibilitas dalam struktur data dan kemampuan untuk embedding data, JSON menjadi format data yang ideal untuk berbagai keperluan pertukaran data di dunia web modern.
+
+# Membuat input form untuk menambahkan objek model pada app sebelumnya
+- Membuat file baru bernama "forms.py" pada direktori "main" untuk membuat form yang bisa menerima data item baru. Isi  dengan
+"from django.forms import ModelForm
+from main.models import Item
+
+class ItemForm(ModelForm):
+    class Meta:
+        model = Item
+        fields = ["name", "amount", "description"]"
+- Pada direktori "main" buka "views.py" dan menambahkan import 
+" from django.http import HttpResponseRedirect
+from main.forms import ItemForm
+from django.urls import reverse"
+- Membuat fungsi baru bernama "create_item" pada "views.py". Isi dengan
+"def create_item(request):
+    form = ItemForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "create_Item.html", context)"
+- Lalu ubah fungsi "show_main" pada "views.py" menjadi seperti ini
+"def show_main(request):
+    items = Item.objects.all()
+    context = {
+        'nama_aplikasi': 'Pacil Library',
+        'nama': "Nabila Zavira",
+        'kelas': "PBP D", 
+        'items': items,
+    }
+
+    return render(request, "main.html", context)"
+- Pada direktori "main" buka "urls.py" dan import fungsi "create_item" 
+"from main.views import show_main, create_item"
+- Menambahkan path url pada "urlpatterns" yang ada di "urls.py" pada direktori "main" supaya bisa mengakses fungsi yang sudah di-import sebelumnya 
+"path('create-item', create_item, name='create_item')"
+- Membuat file baru bernama "create_item.html" pada direktori "main/templates". Isi dengan
+"{% extends 'base.html' %} 
+
+{% block content %}
+<h1>Add New Item</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Add Item"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}"
+- Lalu buka "main.html" dan tambahkan kode berikut supaya bisa menampilkan data produk dalam bentuk tabel dan juga ada tombol "Add New Item" yang akan redirect ke page form
+"<table>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Date Added</th>
+    </tr>
+
+    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+    {% for item in items %}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.date_added}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br />
+
+<a href="{% url 'main:create_item' %}">
+    <button>
+        Add New Item
+    </button>
+</a>
+
+{% endblock content %}"
+- Run project django dengan "python manage.py runserver" dan buka http://localhost:8000 
+
+# Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID
+- Pada direktori main buka "views.py" dan menambahkan import
+"from django.http import HttpResponse
+from django.core import serializers"
+- Membuat fungsi bernama "show_xml" yang menerima parameter "request" dan membuat variabel bernama "data" untuk menyimpan hasil query dari seluruh data yang ada pada Item. Serta menambahkan return function berupa HTTPResponse yang berisi parameter data hasil query. 
+- Membuat fungsi lain bernama "show_json", "show_xml_by_id", dan"show_json_by_id" seperti berikut
+"def show_xml(request):
+    data = Item.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json(request):
+    data = Item.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_xml_by_id(request, id):
+    data = Item.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json_by_id(request, id):
+    data = Item.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")"
+
+# Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2
+- Pada direktori "main", buka file "urls.py" daan import fungsi yang sudah dibuat pada step di atas. "from main.views import show_main, create_item, show_xml, show_json, show_xml_by_id, show_json_by_id"
+- Menambahkan path url pada "urlpatterns" yang ada di "urls.py" pada direktori "main" untuk mengakses fungsi yang sudah diimpor tadi
+"path('xml/', show_xml, name='show_xml'), 
+path('json/', show_json, name='show_json'), 
+path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), "
+- Run project django dengan "python manage.py runserver" dan buka http://localhost:8000/xml, http://localhost:8000/json, http://localhost:8000/xml/[id], http://localhost:8000/json/[id], 
+
+Link SS Postman: ristek.link/Postman_NabilaZavira
