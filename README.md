@@ -4,33 +4,33 @@ Link Aplikasi: https://pacil-lib-23.adaptable.app/main/
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist 
 
 ###  Membuat proyek Django Baru
-- Membuat direktori baru dengan nama "pacil_lib" dan masuk ke direktorinya.
+- Membuat direktori baru dengan nama ```pacil_lib``` dan masuk ke direktorinya.
 - Mengaktifkan virtual environment dengan menjalakan perintah 
 ```python -m venv env```
-- Membuat berkas "requirements.txt" dan tambahkan dependencies yang dibutuhkan oleh proyek Django. Lalu  jalankan 
- ```pip install -r requirements.txt"```
+- Membuat berkas ```requirements.txt``` dan tambahkan dependencies yang dibutuhkan oleh proyek Django. Lalu  jalankan 
+ ```pip install -r requirements.txt```
 - Membuat proyek Django dengan perintah 
 ```django-admin startproject pacil_lib .```
-- Menambahkan "*" di ALLOWED_HOSTS pada berkas "settings.py" untuk mengizinkan akses dari semua host, sehingga memungkina aplikasi diakses secara luas.
+- Menambahkan ```*``` di ALLOWED_HOSTS pada berkas ```settings.py``` untuk mengizinkan akses dari semua host, sehingga memungkina aplikasi diakses secara luas.
 - Menjalankan server Django dengan perintah 
 ```python manage.py runserver```
 - Membuka http://localhost:8000 untuk memastikan proyek berhasil dibuat.
-- Membuat repositori GitHub dengan nama "pacil-lib" yang public.
-- Menambahkan berkas ".gitignore" untuk mengabaikan berkas-berkas yang tidak diperlukan.
-- Lalu jalankan perintah git "init", "remote", "add", "commit" dan "push" ke repositori GitHub.
+- Membuat repositori GitHub dengan nama ```pacil-lib``` yang public.
+- Menambahkan berkas ```.gitignore``` untuk mengabaikan berkas-berkas yang tidak diperlukan.
+- Lalu jalankan perintah git ```init```, ```remote```, ```add```, ```commit``` dan ```push``` ke repositori GitHub.
 
 ### Membuat aplikasi dengan nama main pada proyek tersebut.
-- Membuka direktori "pacil_lib", lalu aktifkan virtual environment
+- Membuka direktori ```pacil_lib```, lalu aktifkan virtual environment
 - Menjalankan perintah 
 ```python manage.py startapp main```
-untuk membuat aplikasi baru, lalu akan terbentuk direktori baru dengan nama "main"
-- Membuka "settings.py" di dalam direktori "pacil_lib"
-- Menambahkan "main" pada "INSTALLED_APPS"
-- Membuat direktori "templates" di dalam direktori "main"
-- Membuat file "main.html" di dalam direktori "templates" 
+untuk membuat aplikasi baru, lalu akan terbentuk direktori baru dengan nama ```main```
+- Membuka ```settings.py``` di dalam direktori ```pacil_lib```
+- Menambahkan ```main``` pada ```INSTALLED_APPS```
+- Membuat direktori ```templates``` di dalam direktori ```main```
+- Membuat file ```main.html``` di dalam direktori ```templates```
 
 ### Membuat model pada aplikasi main dengan nama Item dan memiliki atribut wajib
-- Membuka file "models.py" pada direktori "main" dan tambahkan 
+- Membuka file ```models.py``` pada direktori ```main``` dan tambahkan 
  ```python
     from django.db import models
     class Item(models.Model):
@@ -46,13 +46,14 @@ untuk membuat file migrasi yang berisi perubahan model. Lalu jalankan
 untuk mengaplikasikan perubahan 
 
 ### Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas
-- Membuka "views.py" pada direktori main lalu tambahkan "from django.shortcuts import render" untuk mengimpor fungsi render
-- Menambahkan fungsi "show_main" yang menerima parameter request untuk menampilkan tampilan yang sesuai
-- Membuka "main.htm"l pada direktori "templates" di direktori "main" lalu isi dengan sesuai ketentuan tugas 
+- Membuka ```views.py``` pada direktori main lalu tambahkan 
+```from django.shortcuts import render``` untuk mengimport fungsi render
+- Menambahkan fungsi ```show_main``` yang menerima parameter request untuk menampilkan tampilan yang sesuai
+- Membuka ```main.html``` pada direktori ```templates``` di direktori ```main``` lalu isi dengan sesuai ketentuan tugas 
 
 ###  Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.
-- Membuat file "urls.py" pada direktori "main"
-- Mengisi "urls.py" dengan 
+- Membuat file ```urls.py``` pada direktori ```main```
+- Mengisi ```urls.py``` dengan 
 ```python
 from django.urls import path
 from main.views import show_main
@@ -64,15 +65,15 @@ urlpatterns = [
 ```
 
 ### Melakukan routing pada proyek agar dapat menjalankan aplikasi main.
-- Kemudian pada direktori "pacil_lib", buka file "urls.py" lalu impor 
+- Kemudian pada direktori ```pacil_lib```, buka file ```urls.py``` lalu import
 ```from django.urls import path, include```
-- Menambahkan "path('main/', include('main.urls'))" untuk mengarahkan ke tampilan main dalam "urlpatterns"
+- Menambahkan ```path('main/', include('main.urls'))``` untuk mengarahkan ke tampilan main dalam ```urlpatterns```
 - Menjalankan 
 ```python manage.py runserver```
 lalu buka http://localhost:8000/main/ untuk melihat page yang sudah dibuat
 
 ###  Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
-- Sign in menggunakan akun github, lalu deploy repo yang berisi project django tersebut, lalu pilih branch "main" 
+- Sign in menggunakan akun github, lalu deploy repo yang berisi project django tersebut, lalu pilih branch ```main```
 - Pilih python app template lalu pilih postgreSQL
 - Pilih versi pyhton yang digunakan dan pada bagian start command ketik
 ```python manage.py migrate && gunicorn pacil_lib.wsgi```
@@ -82,8 +83,8 @@ lalu buka http://localhost:8000/main/ untuk melihat page yang sudah dibuat
 
 
 ## Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html
-Link Bagan: (ristek.link/BaganPBP_NabilaZavira)
-Ketika ada permintaan (HTTP Request) kepada server web untuk mengakses sebuah situs, Django akan mencari URL yang sesuai di dalam file "urls.py". Jika URL tersebut cocok, Django akan memanggil fungsi yang terhubung dengan URL tersebut di dalam "views.py". Data diambil dari "models.py" serta untuk memperbarui data yang dibutuhkan. Lalu halaman HTML yang diminta akan ditampilkan sebagai HTTP Response.
+- Link Bagan: (ristek.link/BaganPBP_NabilaZavira)
+- Ketika ada permintaan (HTTP Request) kepada server web untuk mengakses sebuah situs, Django akan mencari URL yang sesuai di dalam file "urls.py". Jika URL tersebut cocok, Django akan memanggil fungsi yang terhubung dengan URL tersebut di dalam "views.py". Data diambil dari "models.py" serta untuk memperbarui data yang dibutuhkan. Lalu halaman HTML yang diminta akan ditampilkan sebagai HTTP Response.
 
 ## Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
 Virtual environment digunakan agar tidak bercampur/berkonflik dengan versi lain python yang ada di sistem serta untuk mencegah konflik dan masalah antara proyek-proyek yang berbeda. Jika tidak menggunakan virtual environment, proyek-proyek dapat saling memengaruhi dan sulit untuk mengelola dependensi dengan baik. Kita dapat membuat aplikasi Django tanpa virtual environment, akan tetapi lebih baik jika Anda menggunakan virtual environment untuk menghindari konflik yang mungkin dapat terjadi
@@ -141,7 +142,7 @@ HTML (HyperText Markup Language):
 JSON sering digunakan dalam aplikasi web modern karena simpel, mudah dibaca, ringan, dan kompatibel dengan JavaScript. JSON juga mendukung tipe data umum, dan mudah digunakan dalam berbagai bahasa pemrograman. Dengan fleksibilitas dalam struktur data dan kemampuan untuk embedding data, JSON menjadi format data yang ideal untuk berbagai keperluan pertukaran data di dunia web modern.
 
 ## Membuat input form untuk menambahkan objek model pada app sebelumnya
-- Membuat file baru bernama "forms.py" pada direktori "main" untuk membuat form yang bisa menerima data item baru. Isi  dengan
+- Membuat file baru bernama ```forms.py``` pada direktori ```main``` untuk membuat form yang bisa menerima data item baru. Isi  dengan
 ``` python
 from django.forms import ModelForm
 from main.models import Item
@@ -150,13 +151,13 @@ class ItemForm(ModelForm):
         model = Item
         fields = ["name", "amount", "description"]
 ```
-- Pada direktori "main" buka "views.py" dan menambahkan import 
+- Pada direktori ```main``` buka ```views.py``` dan menambahkan import 
 ```python
 from django.http import HttpResponseRedirect
         from main.forms import ItemForm
         from django.urls import reverse
 ```
-- Membuat fungsi baru bernama "create_item" pada "views.py". Isi dengan
+- Membuat fungsi baru bernama ```create_item``` pada ```views.py```. Isi dengan
 ```python
 def create_item(request):
     form = ItemForm(request.POST or None)
@@ -168,7 +169,7 @@ def create_item(request):
     context = {'form': form}
     return render(request, "create_Item.html", context)
 ```
-- Lalu ubah fungsi "show_main" pada "views.py" menjadi seperti ini
+- Lalu ubah fungsi ```show_main``` pada ```views.py``` menjadi seperti ini
 ```python
 def show_main(request):
     items = Item.objects.all()
@@ -181,11 +182,11 @@ def show_main(request):
 
     return render(request, "main.html", context)
 ```
-- Pada direktori "main" buka "urls.py" dan import fungsi "create_item" 
+- Pada direktori ```main``` buka ```urls.py``` dan import fungsi ```create_item``` 
 ```from main.views import show_main, create_item```
-- Menambahkan path url pada "urlpatterns" yang ada di "urls.py" pada direktori "main" supaya bisa mengakses fungsi yang sudah di-import sebelumnya 
+- Menambahkan path url pada ```urlpatterns``` yang ada di ```urls.py``` pada direktori ```main``` supaya bisa mengakses fungsi yang sudah di-import sebelumnya 
 ```path('create-item', create_item, name='create_item')```
-- Membuat file baru bernama "create_item.html" pada direktori "main/templates". Isi dengan
+- Membuat file baru bernama ```create_item.html``` pada direktori ```main/templates```. Isi dengan
 ```html
 {% extends 'base.html' %} 
 
@@ -207,7 +208,7 @@ def show_main(request):
 
 {% endblock %}"
 ```
-- Lalu buka "main.html" dan tambahkan kode berikut supaya bisa menampilkan data produk dalam bentuk tabel dan juga ada tombol "Add New Item" yang akan redirect ke page form
+- Lalu buka ```main.html``` dan tambahkan kode berikut supaya bisa menampilkan data produk dalam bentuk tabel dan juga ada tombol ```Add New Item``` yang akan redirect ke page form
 ```html
 <table>
     <tr>
@@ -240,16 +241,16 @@ def show_main(request):
 {% endblock content %}"
 ```
 - Run project django dengan 
-```python manage.py runserve```
+```python manage.py runserver```
 dan buka http://localhost:8000 
 
 ## Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID
-- Pada direktori main buka "views.py" dan menambahkan import
+- Pada direktori main buka ```views.py``` dan menambahkan import
 ```from django.http import HttpResponse```
 ```from django.core import serializers```
-- Membuat fungsi bernama "show_xml" yang menerima parameter "request" dan membuat variabel bernama "data" untuk menyimpan hasil query dari seluruh data yang ada pada Item. Serta menambahkan return function berupa HTTPResponse yang berisi parameter data hasil query. 
-- Membuat fungsi lain bernama "show_json", 
-"show_xml_by_id", dan"show_json_by_id" seperti berikut
+- Membuat fungsi bernama ```show_xml``` yang menerima parameter ```request``` dan membuat variabel bernama ```data``` untuk menyimpan hasil query dari seluruh data yang ada pada Item. Serta menambahkan return function berupa HTTPResponse yang berisi parameter data hasil query. 
+- Membuat fungsi lain bernama ```show_json```, 
+```show_xml_by_id```, dan```show_json_by_id``` seperti berikut
 ```python
 def show_xml(request):
     data = Item.objects.all()
@@ -268,8 +269,8 @@ def show_json_by_id(request, id):
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 ```
 ## Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2
-- Pada direktori "main", buka file "urls.py" dan import fungsi yang sudah dibuat pada step di atas. ```"from main.views import show_main, create_item, show_xml, show_json, show_xml_by_id, show_json_by_id"```
-- Menambahkan path url pada "urlpatterns" yang ada di "urls.py" pada direktori "main" untuk mengakses fungsi yang sudah diimpor tadi
+- Pada direktori ```main```, buka file ```urls.py``` dan import fungsi yang sudah dibuat pada step di atas. ```from main.views import show_main, create_item, show_xml, show_json, show_xml_by_id, show_json_by_id```
+- Menambahkan path url pada ```urlpatterns``` yang ada di ```urls.py``` pada direktori ```main ```untuk mengakses fungsi yang sudah diimport tadi
 ```python
 path('xml/', show_xml, name='show_xml'), 
 path('json/', show_json, name='show_json'), 
@@ -281,3 +282,265 @@ path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
 dan buka http://localhost:8000/xml, http://localhost:8000/json, http://localhost:8000/xml/[id], http://localhost:8000/json/[id], 
 
 Link SS Postman: (ristek.link/Postman_NabilaZavira) 
+
+
+# **TUGAS 4**
+## Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
+- UserCreationForm adalah form bawaan Django untuk membuat akun pengguna.
+- Kelebihan dari menggunakan UserCreationForm yaitu:
+    - UserCreationForm sudah termasuk dalam Django's built-in authentication system, tidak perlu membuat formulir pendaftaran pengguna dari awal sehingga mudah digunakan dan menghemat waktu.
+    - Form ini terintegrasi dengan baik dengan sistem autentikasi Django, yang berarti setelah pengguna mendaftar, akun mereka dapat dengan mudah dikelola, seperti login, logout, reset kata sandi, dan lainnya.
+    - Form ini mencakup validasi bawaan untuk memastikan bahwa pengguna memasukkan data yang valid saat mendaftar, seperti memeriksa apakah alamat email unik, mengonfirmasi kata sandi, dan lainnya.
+
+- Kekurangan yang perlu diperhatikan:
+    - Meskipun UserCreationForm sangat berguna untuk kasus penggunaan umum, tetapi tidak cukup fleksibel jika memerlukan custom yang lebih canggih atau perlu mengintegrasikan dengan basis data atau model pengguna yang kompleks.
+    - Tampilan default yang dihasilkan oleh UserCreationForm mungkin terlihat sederhana dan kurang menarik. 
+    - Jika memerlukan fitur pendaftaran yang lebih kompleks, seperti konfirmasi email, atau integrasi dengan layanan pihak ketiga, maka perlu menulis kode tambahan untuk mengimplementasikannya.
+
+## Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+- Autentikasi adalah proses memverifikasi identitas pengguna yakni untuk mengidentifikasi siapa pengguna yang mencoba mengakses aplikasi web. Autentikasi digunakan untuk memeriksa apakah pengguna yang mencoba mengakses aplikasi adalah pengguna yang sah atau bukan. Ini memastikan bahwa hanya pengguna yang terdaftar dan terotentikasi yang dapat mengakses bagian tertentu dari aplikasi.
+    - Contoh: Login adalah contoh autentikasi. Ketika pengguna memasukkan kredensial mereka (seperti nama pengguna dan kata sandi), sistem memverifikasi apakah kredensial tersebut sesuai dengan yang ada dalam basis data. Jika cocok, pengguna dianggap terotentikasi dan dapat mengakses sumber daya yang terlindungi.
+- Otorisasi adalah proses mengendalikan akses pengguna yang sudah terotentikasi ke sumber daya atau fungsi tertentu dalam aplikasi. Ini menentukan apa yang diizinkan atau tidak diizinkan untuk dilakukan oleh pengguna yang terotentikasi. Otorisasi mengontrol hak akses pengguna. Ini memastikan bahwa bahkan setelah terotentikasi, pengguna hanya memiliki akses ke bagian-bagian tertentu dari aplikasi yang sesuai dengan peran dan izin mereka.
+    - Contoh: Seorang pengguna yang terotentikasi mungkin memiliki izin untuk mengedit profil mereka sendiri, tetapi tidak diberi izin untuk mengedit profil pengguna lain. Ini adalah contoh dari otorisasi yang mengatur apa yang dapat dilakukan pengguna setelah mereka masuk.
+
+- Autentikasi dan otorisasi bekerja bersama-sama untuk menjaga keamanan aplikasi web. Autentikasi memastikan bahwa hanya pengguna yang sah yang dapat mengakses aplikasi, sedangkan otorisasi memastikan bahwa pengguna hanya dapat melakukan tindakan yang sesuai dengan izin mereka. Otorisasi memungkinkan pengembang untuk mengontrol tingkat privasi pengguna dan data dalam aplikasi untuk melindungi informasi sensitif dan menjaga integritas aplikasi. Otorisasi memungkinkan pengembang untuk mengelola akses pengguna secara efektif, termasuk pengaturan peran, izin, dan hak akses yang memungkinkan pengaturan tingkat akses yang tepat untuk setiap pengguna.
+
+## Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
+- Cookies adalah sejumlah kecil informasi yang dikirim oleh server web ke browser dan kemudian dikirim kembali oleh peramban pada page request yang akan datang. 
+- Dalam Django, cookies digunakan khususnya untuk mengelola data sesi pengguna. Mereka membuat dan menyimpan cookie sesi, mengirimkannya ke server saat pengguna berinteraksi dengan situs web, dan digunakan untuk mengidentifikasi dan menyimpan data sesi pengguna. Penggunaan cookies memungkinkan pengalaman pengguna yang lebih baik, meskipun harus memperhatikan masalah keamanan seperti serangan XSS.
+
+## Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+- Penggunaan cookies dalam pengembangan web dapat aman jika diimplementasikan dengan benar dan dengan mempertimbangkan berbagai risiko potensial, termasuk serangan XSS, pencurian data, pencurian cookies, pemantauan, dan blokir oleh pengguna. Untuk menjaga keamanan cookies, Anda harus mengamankannya dengan HTTPS, menggunakan atribut HttpOnly dan Secure, validasi data dengan hati-hati, enkripsi data sensitif, dan mematuhi regulasi privasi yang berlaku.
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step
+
+### Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
+#### Register
+- Pertama-tama jalankan virtual environment
+- Lalu membuka ```views.py``` yang ada di directory ```main``` dan menambahkan import ```redirect```, ```UserCreationForm```, dan ```messages```
+- Membuat fungsi yang bernama ```register``` yang menerima parameter ```request```
+``` python
+def register(request):
+    form = UserCreationForm()
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been successfully created!')
+            return redirect('main:login')
+    context = {'form':form}
+    return render(request, 'register.html', context)
+```
+- Membuat file HTML baru yang bernama ```register.html``` pada folder ```main/templates``` Isi dengan
+``` html
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Register</title>
+{% endblock meta %}
+
+{% block content %}  
+
+<div class = "login">
+    
+    <h1>Register</h1>  
+
+        <form method="POST" >  
+            {% csrf_token %}  
+            <table>  
+                {{ form.as_table }}  
+                <tr>  
+                    <td></td>
+                    <td><input type="submit" name="submit" value="Daftar"/></td>  
+                </tr>  
+            </table>  
+        </form>
+
+    {% if messages %}  
+        <ul>   
+            {% for message in messages %}  
+                <li>{{ message }}</li>  
+                {% endfor %}  
+        </ul>   
+    {% endif %}
+
+</div>  
+
+{% endblock content %}
+```
+- Lalu membuka ```urls.py``` yang ada pada folder ```main``` dan import ``` form main.views import register``` dan menambahkan path url ke dalam ```urlpatterns``` untuk mengakses fungsi yang sudah diimport
+```path('register/', register, name='register'),```
+
+#### Login
+- Membuka ```views.py``` yang ada pada folder ```main``` dan menambahkan import ```authenticate``` dan ```login``` yaitu
+```from django.contrib.auth import authenticate, login```
+- Buat fungsi yang bernama ```login_user``` yang menerima parameter ```request``` 
+``` python
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('main:show_main')
+        else:
+            messages.info(request, 'Sorry, incorrect username or password. Please try again.')
+    context = {}
+    return render(request, 'login.html', context)
+```
+- Membuat file html baru yang bernama ```login.html``` pada folder ```main/templates``` Isis dengan
+``` html
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Login</title>
+{% endblock meta %}
+
+{% block content %}
+
+<div class = "login">
+
+    <h1>Login</h1>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Username: </td>
+                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+            </tr>
+                    
+            <tr>
+                <td>Password: </td>
+                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input class="btn login_btn" type="submit" value="Login"></td>
+            </tr>
+        </table>
+    </form>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}     
+        
+    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+
+</div>
+
+{% endblock content %}
+```
+- Lalu membuka ```urls.py``` yang ada pada ```main``` dan import  ```from main.views import login_user #sesuaikan dengan nama fungsi yang dibuat``` lalu menambahkan path url ke ```urlpatterns``` untuk mengakses fungsi yang sudah diimport ```path('login/', login_user, name='login'),```
+
+#### Logout
+- Membuka ```views.py``` yang ada di folder ```main``` lalu menambahkan import ```logout``` yaitu ```from django.contrib.auth import logout```
+- Membuat fungsi yang bernama ```logout_user```yang menerima paramter ```request```
+``` python
+def logout_user(request):
+    logout(request)
+    return redirect('main:login')
+```
+- Lalu membuka file ```mian.html``` yang ada pada folder ```main/templates``` kemudian menambahkan kode berikut setelah tag Add New Item pada ```main.html```
+```html
+...
+<a href="{% url 'main:logout' %}">
+    <button>
+        Logout
+    </button>
+</a>
+...
+```
+- Membuka ```urls.py``` yang ada pada folder ```main``` dan import ```from main.views import logout_user``` daan menambahkan path url ke ```urlpatterns``` yaitu ```path('logout/', logout_user, name='logout'),```
+
+### Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+- Membuat 2 akun pengguna (yang pertama dengan username Nabila dan yang kedua dengan username Bella)
+- Pada akun Nabila melakukan add new item sebanyak 3 kali 
+- Pada akun Bella melakukan add new item sebanyak 3 kali juga
+- Sehingga pada masing masing akun sekarang memiliki 3 dummy data
+
+(ristek.link/DummyData_NabilaZavira)
+
+### Menghubungkan model Item dengan User.
+- Membuka ```models.py``` yang ada pada ```main```  lalu import
+```from django.contrib.auth.models import User```
+- Kemudian tambahkan kode pada Item yang sudah dibuat
+``` python
+class Item(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ...
+```
+- Membuka ```views.py``` yang ada pada ```main``` lalu ubah potongan kode pada fungsi ```create_item```
+``` python
+def create_item(request):
+ form = ItemForm(request.POST or None)
+
+ if form.is_valid() and request.method == "POST":
+     item = form.save(commit=False)
+     item.user = request.user
+     item.save()
+     return HttpResponseRedirect(reverse('main:show_main'))
+ ...
+ ```
+ - Kemudian ubah fungsi ```show_main```
+ ```python
+ def show_main(request):
+    items = Item.objects.filter(user=request.user)
+
+    context = {
+        'name': request.user.username,
+    ...
+...
+```
+- Setelah save semua perubahan, lalu melakukan migrasi model dengan````python manage.py makemigrations```. Kemudian pilih 1 untuk menetapkan default value untuk field user, lalu ketik 1 lagi untuk menetapkan user dengan ID 1 yang sudah dibuat sebelumnya.
+- Kemudian jalankan perintah ```python manage.py migrate```
+
+### Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi
+- Membuka ```views.py``` yanga ada pada main lalu tambahkan import 
+``` python
+import datetime
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+```
+- Kemudian pada fungsi ```login_user```, mengganti kode pada ``` if user is not None``` menjadi 
+```
+...
+if user is not None:
+    login(request, user)
+    response = HttpResponseRedirect(reverse("main:show_main")) 
+    response.set_cookie('last_login', str(datetime.datetime.now()))
+    return response
+...
+```
+untuk menambahkan cookie yang memiliki nama last_login
+- Lalu pada fungsi ```show_main```, menambahkan kode pada variabel ```context```
+``` python
+context = {
+    'name': 'Pak Bepe',
+    'class': 'PBP A',
+    'products': products,
+    'last_login': request.COOKIES['last_login'],
+}
+```
+- Mengubah fungsi logout_user menjadi 
+``` python
+def logout_user(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse('main:login'))
+    response.delete_cookie('last_login')
+    return response
+```
+- Kemudian membuka file ```main.html``` lalu menambahkan kode di antara tabel dan tombol logout
+``` html
+...
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+...
+```
+- Lalu menjalankan perintah ```python manage.py runserver```
