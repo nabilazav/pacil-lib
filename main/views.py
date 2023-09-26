@@ -1,19 +1,18 @@
+import datetime
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from main.forms import ItemForm
+from main.models import Item
 from django.http import HttpResponse
 from django.core import serializers
-from django.http import HttpResponseRedirect
-from main.forms import ItemForm
-from django.urls import reverse
-from django.shortcuts import render
-from main.models import Item
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages  
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-import datetime
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+
 
 # Create your views here.
 
@@ -39,7 +38,7 @@ def create_item(request):
         item.save()
         return HttpResponseRedirect(reverse('main:show_main'))
     context = {'form': form}
-    return render(request, "create_Item.html", context)
+    return render(request, "create_item.html", context)
 
 def show_xml(request):
     data = Item.objects.all()

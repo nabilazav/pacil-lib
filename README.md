@@ -497,6 +497,7 @@ def create_item(request):
     context = {
         'name': request.user.username,
     ...
+    }
 ...
 ```
 - Setelah save semua perubahan, lalu melakukan migrasi model dengan````python manage.py makemigrations```. Kemudian pilih 1 untuk menetapkan default value untuk field user, lalu ketik 1 lagi untuk menetapkan user dengan ID 1 yang sudah dibuat sebelumnya.
@@ -510,7 +511,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 ```
 - Kemudian pada fungsi ```login_user```, mengganti kode pada ``` if user is not None``` menjadi 
-```
+``` python
 ...
 if user is not None:
     login(request, user)
@@ -525,7 +526,7 @@ untuk menambahkan cookie yang memiliki nama last_login
 context = {
     'name': 'Pak Bepe',
     'class': 'PBP A',
-    'products': products,
+    'items': items,
     'last_login': request.COOKIES['last_login'],
 }
 ```
