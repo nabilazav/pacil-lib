@@ -1,47 +1,163 @@
 {% extends 'base.html' %}
 {% block content %}  
-    <h1>Pacil Library Page</h1>
+{% load static %}
 
-    <h5>Nama Aplikasi: </h5>
-    <p>{{ nama_aplikasi }}</p> 
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Pacil Lib</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Books
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Novel</a></li>
+              <li><a class="dropdown-item" href="#">Biography</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">All</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+            <a class="nav-link logout-button" href="{% url 'main:logout' %}">Logout</a>
+             </a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <h5>Nama: </h5>
-    <p>{{ nama }}</p> 
+  <head>
+    <style>
+        h1 {
+        font-weight: bold; 
+        text-align: center; /* Teks menjadi terpusat secara horizontal */
+        margin-top: 10px;
+        margin-bottom: 30px;
 
-    <h5>Kelas: </h5>
-    <p>{{ kelas }}</p>
+        }
+        body {
+            background-color: rgb(235, 215, 228);
+            text-align: center;  /*Teks menjadi terpusat secara horizontal */
+            margin-bottom: 30px;
+            font-family: 'Poppins', sans-serif;
+            
+        }
+        .navbar {
+            background-color: #343a40; /* Warna latar belakang navbar */
+        }
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Description</th>
-        <th>Date Added</th>
-    </tr>
+        .navbar-brand {
+        font-weight: bold; 
+        }
+        .nav-link {
+            color: #b09b9b; /* Warna teks */
+        }
 
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+        .nav-link:hover {
+            color: #7b687f; /* Warna teks saat dihover */
+        }
 
+        h1 {
+            color: #343a40; /* Warna teks untuk judul utama */
+        }
+
+        h5 {
+            color: #343a40; /* Warna teks untuk subjudul */
+        }
+        .card {
+            background-color: #faf2f8; /* Warna latar belakang default card */
+            margin: 10px; /* Tambahkan margin agar isi card tidak terlalu mepet dengan border */
+            padding: 10px; /* Tambahkan padding agar isi card terlihat lebih rapi */
+            border-radius: 15px; /* Atur border-radius untuk membuat card lebih bulat */
+        }
+        .card-container {
+            justify-content: center; /* Pusatkan konten horizontal */
+            align-items: center; /* Pusatkan konten vertikal */
+        }
+        .last-card {
+            background-color: #f3f3e6;
+            margin: 10px;
+            padding: 10px;
+        }
+        .add-item {
+            background-color: rgb(181, 57, 173);
+            margin-top: 40px;
+            margin-bottom: 40px;
+            color: #FFFFFF; /* Warna teks */
+            border: 2px solid #e8d9e2; /* Warna border */
+            border-radius: 10px; /* Sudut border */
+            padding: 5px 15px; /* Padding tombol */
+        }
+        .add-item:hover{
+            background-color: rgb(135, 17, 128); 
+        }
+        .logout-button {
+            background-color: #d63b0c; /* Warna latar belakang */
+            color: #FFFFFF; /* Warna teks */
+            border: 2px solid #ead6d2; /* Warna border */
+            border-radius: 10px; /* Sudut border */
+            margin-left: 10px;
+        }
+
+</style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+</head>
+
+<h1>Pacil Library Page</h1>
+
+<h5>Nama: </h5>
+<p>{{ nama }}</p> 
+
+<h5>Kelas: </h5>
+<p>{{ kelas }}</p>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
     {% for item in items %}
-        <tr>
-            <td>{{item.name}}</td>
-            <td>{{item.amount}}</td>
-            <td>{{item.description}}</td>
-            <td>{{item.date_added}}</td>
-        </tr>
+    <div class="col">
+        <div class="card h-100{% if forloop.last %} last-card{% endif %}">
+            <!-- Menggunakan atribut src untuk menampilkan gambar -->
+            <img src="{% static 'image.jpg' %}" alt="Image">
+            
+            <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">{{ item.description }}</p>
+                <p class="card-text">Amount: {{ item.amount }}</p>
+                <p class="card-text">Date Added: {{ item.date_added }}</p>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'main:increase_amount' item.pk %}" class="btn btn-secondary"style="margin-left: 5px;">+</a> {{item.amount}}
+                <a href="{% url 'main:decrease_amount' item.pk %}" class="btn btn-secondary"style="margin-right: 30px;">-</a>
+                <a href="{% url 'main:edit_item' item.pk %}" class="btn btn-primary"style="margin-right: 10px;">Edit</a>
+                <a href="{% url 'main:delete_item' item.pk %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
     {% endfor %}
-</table>
-
-<br />
+</div>
 
 <a href="{% url 'main:create_item' %}">
-    <button>
+    <button class="add-item">
         Add New Item
     </button>
 </a>
 <h5>Sesi terakhir login: {{ last_login }}</h5>
-<a href="{% url 'main:logout' %}">
-    <button>
-        Logout
-    </button>
-</a>
+
 {% endblock content %}

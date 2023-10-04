@@ -208,7 +208,7 @@ def show_main(request):
 
 {% endblock %}"
 ```
-- Lalu buka ```main.html``` dan tambahkan kode berikut supaya bisa menampilkan data produk dalam bentuk tabel dan juga ada tombol ```Add New Item``` yang akan redirect ke page form
+- Lalu buka ```main.html``` dan tambahkan kode berikut supaya bisa menampilkan data item dalam bentuk tabel dan juga ada tombol ```Add New Item``` yang akan redirect ke page form
 ```html
 <table>
     <tr>
@@ -218,7 +218,7 @@ def show_main(request):
         <th>Date Added</th>
     </tr>
 
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+    {% comment %} Berikut cara memperlihatkan data item di bawah baris ini {% endcomment %}
 
     {% for item in items %}
         <tr>
@@ -545,3 +545,418 @@ def logout_user(request):
 ...
 ```
 - Lalu menjalankan perintah ```python manage.py runserver```
+
+
+# **TUGAS 5**
+## Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+
+- Element Selector (tanpa diawali # or .) memungkinkan kita mengubah properti untuk semua elemen yang memiliki tag HTML yang sama. Jadi bisa mengaplikasikan style pada semua elemen dalam dokumen, perlu hati-hati karena dapat mempengaruhi semua elemen.
+- Class Selector (with leading .) memilih elemen berdasarkan nama class, untuk menerapkan style khusus pada elemen yang memiliki class tertentu.
+- ID Selector (diawali dengan #) memilih elemen berdasarkan ID, digunakan untuk mengidentifikasi elemen unik dan menerapkan gaya atau fungsi khusus.
+- Type Selector (tag selector) memilih semua elemen dengan tag tertentu, seperti p untuk semua paragraf, digunakan ketika ingin menerapkan style umum pada semua elemen dengan tag yang sama.
+- Attribute Selector ([attribute=value]) memilih elemen berdasarkan atribut dan nilainya, digunakan untuk menerapkan gaya pada elemen dengan atribut tertentu, misalnya input[type="text"]
+- Pseudo-class Selector (:pseudo-class) memilih elemen berdasarkan kondisi atau status tertentu, seperti :hover untuk mengganti tampilan saat mouse mengarah ke atas elemen, digunakan untuk mengubah tampilan interaktif.
+- Pseudo-element Selector (::pseudo-element) memilih bagian tertentu dari elemen, seperti ::before untuk menambahkan konten sebelum elemen, digunakan untuk menambahkan elemen virtual ke dalam dokumen.
+Waktu yang tepat untuk menggunakannya tergantung pada kebutuhan dan situasi
+
+## Jelaskan HTML5 Tag yang kamu ketahui.
+HTML5 memperkenalkan banyak tag baru, beberapa di antaranya adalah:
+
+- `<header>` : menandakan bagian atas dari sebuah dokumen atau bagian dari konten.
+- `<nav>`: mengelompokkan tautan navigasi.
+- `<section>`: mengelompokkan konten dalam sebuah dokumen.
+- `<article>`: mendefinisikan sebuah artikel independen dalam dokumen.
+- `<footer>`: menandakan bagian bawah dari sebuah dokumen atau bagian dari konten.
+- `<aside>`: menunjukkan konten yang terkait, tetapi bukan bagian utama dari dokumen.
+
+## Jelaskan perbedaan antara margin dan padding.
+- Margin adalah space kosong di sekitar border. Margin memengaruhi jarak antara elemen dengan elemen lain di luarnya. Margin digunakan untuk mengatur jarak antara satu elemen dengan elemen elemen lainnya yang berada di sisi luar element.
+- Padding adalah space kosong di sekitar konten. Padding memengaruhi jarak antara konten elemen dan border elemen itu sendiri. Margin Padding untuk mengatur jarak antara satu elemen dengan border elemen (yang berada di sisi dalam element).
+
+## Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+- Tailwind CSS membangun tampilan dengan menggabungkan kelas-kelas utilitas yang telah didefinisikan sebelumnya. Sedangkan, Bootstrap menggunakan gaya dan komponen yang telah didefinisikan, yang memiliki tampilan yang sudah jadi dan dapat digunakan secara langsung.
+- Tailwind CSS memiliki file CSS yang lebih kecil sedikit dibandingkan Bootstrap dan hanya akan memuat kelas-kelas utilitas yang ada. Sedangkan, Bootstrap memiliki file CSS yang lebih besar dibandingkan dengan Tailwind CSS karena termasuk banyak komponen yang telah didefinisikan.
+- Tailwind CSS memiliki memberikan fleksibilitas dan adaptabilitas tinggi terhadap proyek. Sedangkan, Bootstrap sering kali menghasilkan tampilan yang lebih konsisten di seluruh proyek karena menggunakan komponen yang telah didefinisikan.
+- Tailwind CSS memiliki pembelajaran yang lebih curam karena memerlukan pemahaman terhadap kelas-kelas utilitas yang tersedia dan bagaimana menggabungkannya untuk mencapai tampilan yang diinginkan. Sedangkan, Bootstrap memiliki pembelajaran yang lebih cepat untuk pemula karena dapat mulai dengan komponen yang telah didefinisikan.
+
+Pemilihan antara Bootstrap dan Tailwind tergantung pada kebutuhan:
+- Tailwind CSS lebih cocok jika memerlukan fleksibilitas tinggi, bekerja pada proyek khusus dengan tampilan yang unik, dan memiliki waktu untuk memahami kelas-kelas utilitas yang tersedia.
+- Bootstrap lebih cocok jika perlu menjaga konsistensi desain di seluruh proyek, merupakan seorang pemula dalam pengembangan web, atau jika ingin membangun proyek dengan cepat, atau membutuhkan dukungan yang kuat dari komunitas dan dokumentasi.
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+### Menambahkan bootstrap ke aplikasi
+- Membuka file base.html pada templates folder yang berada di root project. Pada templates/base.html, tambahkan tag <meta name="viewport"> agar halaman web dapat menyesuaikan ukuran dan perilaku perangkat mobile (apabila belum).
+``` html
+<head>
+    {% block meta %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+</head>
+```
+- Menambahkan Bootstrap CSS dan juga JS.
+``` html
+{% load static %}
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+J4jsl5c9zdLKaUk5Ae5f5b1bw6AUn5f5v8FZJoMxm6f5cH1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</head>
+```
+### Menambahkan navbar pada Aplikasi
+- Menambahkan navigation bar (menggunakan Bootstrap) pada halaman main.html dar (getbootstrap.com)
+- Lalu pada navbar saya ubah dengan memberikan button logout dan juga mengubah warnanya
+``` html
+ <ul class="navbar-nav">
+            <li class="nav-item">
+            <a class="nav-link logout-button" href="{% url 'main:logout' %}">Logout</a>
+             </a>
+            </li>
+        </ul>
+```
+```css
+  .logout-button {
+            background-color: #d63b0c; /* Warna latar belakang */
+            color: #FFFFFF; /* Warna teks */
+            border: 2px solid #ead6d2; /* Warna border */
+            border-radius: 10px; /* Sudut border */
+            margin-left: 10px;
+        }
+
+```
+### Menambahkan fitur edit pada aplikasi
+- Membuka views.py yang ada pada folder main, dan buatlah fungsi baru bernama edit_item yang menerima parameter request dan id.
+``` python
+def edit_item(request, id):
+    item = Item.objects.get(pk = id)
+    form = ItemForm(request.POST or None, instance=item)
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_item.html", context)
+```
+- Buatlah file HTML baru dengan nama edit_item.html pada folder main/templates. Isi berkas tersebut dengan template berikut.
+``` html
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h1>Edit Item</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Edit Item"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}
+```
+- Membuka urls.py yang berada pada folder main dan import fungsi edit_item yang sudah dibuat.
+- Menambahkan path url ke dalam urlpatterns untuk mengakses fungsi yang sudah diimport tadi.
+``` python
+path('edit-item/<int:id>', edit_item, name='edit_item'),
+```
+
+### Membuat fungsi untuk menghapus data item
+- Membuat fungsi baru dengan nama delete_item yang menerima parameter request dan id pada views.py di folder main untuk menghapus data item. 
+```python
+def delete_item(request, id):
+    # Get data berdasarkan ID
+    item = Item.objects.get(pk = id)
+    # Hapus data
+    item.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('main:show_main'))
+```
+- Membuka urls.py yang ada pada folder main dan import fungsi yang sudah dibuat tadi.
+``` python
+from main.views import delete_item
+```
+- Menambahkan path url ke dalam urlpatterns untuk mengakses fungsi yang sudah diimport.
+``` python
+path('delete/<int:id>', delete_item, name='delete_item'), 
+```
+
+### Membuat fungsi menambahkan/mengurangkan amount
+- Membuat fungsi baru dengan nama delete_item yang menerima parameter request dan id pada views.py di folder main untuk menghapus data item. 
+``` python
+def increase_amount(request, id):
+    item = Item.objects.get(pk = id)
+    item.amount += 1
+    item.save()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def decrease_amount(request, id):
+    item = Item.objects.get(pk = id)
+    if item.amount > 0:
+        item.amount -= 1
+        item.save()
+    if item.amount == 0:
+        item.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
+```
+- Membuka urls.py yang ada pada folder main dan import fungsi yang sudah dibuat tadi.
+```python
+from main.views import increase_amount,decrease_amount
+```
+- Menambahkan path url ke dalam urlpatterns untuk mengakses fungsi yang sudah diimport.
+```python
+path('increase_amount/<int:id>/', increase_amount name='increase_amount'),
+path('decrease_amount/<int:id>/', decrease_amount, name='decrease_amount'),
+```
+
+### Menambahkan gambar
+- Pada file settings.py yang berada pada folder pacil_lib, tambahkan kode
+``` python
+import os
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'main/static'),
+]
+```
+- Lalu menyimpan foto yang ingin digunakan pada folder main/static dan tambahkan 
+`{% load static %}` pada file yang akan ditambahkan gambar
+- Pada `login.html` menambahkan foto pada body
+``` css
+        background-image: url("{% static 'lib.jpg' %}");
+```
+- Pada `main.html` menambahkan foto pada card
+```html
+            <img src="{% static 'image.jpg' %}" alt="Image">
+```
+
+### Mengatur tampilan dengan css pada file `register.html`, `edit_item.html`, `create_item.html`
+``` css
+<head>
+    <style>
+        h1 {
+            text-align: center; /* Pusatkan teks horizontal */
+            margin-bottom: 30px;
+            margin-top: 15px;
+            font-family: 'Poppins';
+        }
+        body{
+            background-color: #d8bfcf;
+        }
+        form {
+            max-width: 500px; /* Atur lebar maksimum form */
+            margin: 0 auto; /* Pusatkan form horizontal */
+            padding: 20px; 
+            border-radius: 20px; /* Tambahkan sudut bulat pada form */
+            background-color: #efe8ef; /* Atur latar belakang form */
+        }
+    
+        table {
+            width: 100%;
+        }
+    
+        table tr td {
+            padding: 10px; /* Tambahkan padding pada sel form */
+        }
+    
+        input[type="submit"] {
+            background-color: #8d3b6b; /* Atur warna latar belakang tombol */
+            color: #FFFFFF; /* Atur warna teks tombol */
+            border: 2px solid #dad1db; /* Atur border tombol */
+            border-radius: 10px; /* Tambahkan sudut bulat pada tombol */
+            padding: 10px 20px; /* Tambahkan padding pada tombol */
+            display: block; /* Ubah tombol menjadi elemen blok agar teksnya di tengah */
+        }
+        
+    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+```
+### Mengatur tampilan pada `login.html`
+- Memberikan teks PACIL LIB. dan di style pada .container{} dan h1{} supaya teks nya di center top, dan mengatur font teks
+- Mengatur border login agar di center dengan .login{} dan mengatur button login dengan .login_btn{} dan login_btn:hover{}
+``` css
+{% load static %}
+<head>
+<style>
+     .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* vertikal */
+        align-items: center; /*  horizontal */
+        height: 100vh;
+
+    }
+    body {
+        display: flex;
+        place-items: center start;
+        font-family: 'Poppins';
+        background-image: url("{% static 'lib.jpg' %}");
+        background-size: cover;
+        
+    }
+
+    h1 {
+        font-weight: bold; 
+        text-align: center; /* Teks menjadi terpusat secara horizontal */
+        color: #3d154e;
+        position: absolute;
+        top: 50px; /* Menggeser elemen ke atas */
+        left: 50%; /* Memposisikan elemen secara horizontal di tengah */
+        transform: translate(-50%, 0);
+        font-size:75px;
+
+    }
+    .login {
+        background-color: rgb(244, 236, 255);
+        padding: 50px;
+        border-radius: 100px;
+        position: absolute;
+        top: 50%; /* Menggeser elemen ke tengah vertikal */
+        left: 50%; /* Memposisikan elemen secara horizontal di tengah */
+        transform: translate(-50%, -50%); 
+    }
+    .login_btn {
+        background-color: #e2bef9; /* Warna latar belakang tombol */
+        color: #383535; /* Warna teks */
+        border: 2px solid #dad1db;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        cursor: pointer; /* Ganti kursor saat di atas tombol */
+    }
+
+    .login_btn:hover {
+        background-color: #a882c0; /* Warna latar belakang saat tombol dihover */
+    }
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<div class="container">
+        <h1>PACIL LIB.</h1>
+       
+    </div>
+
+```
+
+### Mengatur tampilan pada file `main.html`
+- Menggunakan approach card, dan memberikan warna yang berbeda pada item yang terakhir di add dengan `{% if forloop.last %}`
+``` html
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for item in items %}
+    <div class="col">
+        <div class="card h-100{% if forloop.last %} last-card{% endif %}">
+            <!-- Menggunakan atribut src untuk menampilkan gambar -->
+            <img src="{% static 'image.jpg' %}" alt="Image">
+            
+            <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">{{ item.description }}</p>
+                <p class="card-text">Amount: {{ item.amount }}</p>
+                <p class="card-text">Date Added: {{ item.date_added }}</p>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'main:increase_amount' item.pk %}" class="btn btn-secondary"style="margin-left: 5px;">+</a> {{item.amount}}
+                <a href="{% url 'main:decrease_amount' item.pk %}" class="btn btn-secondary"style="margin-right: 30px;">-</a>
+                <a href="{% url 'main:edit_item' item.pk %}" class="btn btn-primary"style="margin-right: 10px;">Edit</a>
+                <a href="{% url 'main:delete_item' item.pk %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+```
+- Mengatur tampilan teks, posisi warna dan button seperti ini
+``` css
+<head>
+    <style>
+        h1 {
+        font-weight: bold;
+        text-align: center; /* Teks menjadi terpusat secara horizontal */
+        margin-top: 10px;
+        margin-bottom: 30px;
+
+        }
+        body {
+            background-color: rgb(235, 215, 228);
+            text-align: center;  /*Teks menjadi terpusat secara horizontal */
+            margin-bottom: 30px;
+            font-family: 'Poppins', sans-serif;
+            
+        }
+        .navbar {
+            background-color: #343a40; /* Warna latar belakang navbar */
+        }
+
+        .navbar-brand {
+        font-weight: bold; 
+        }
+        .nav-link {
+            color: #b09b9b; /* Warna teks */
+        }
+
+        .nav-link:hover {
+            color: #7b687f; /* Warna teks saat dihover */
+        }
+
+        h1 {
+            color: #343a40; /* Warna teks untuk judul utama */
+        }
+
+        h5 {
+            color: #343a40; /* Warna teks untuk subjudul */
+        }
+        .card {
+            background-color: #faf2f8; /* Warna latar belakang default card */
+            margin: 10px; /* Tambahkan margin agar isi card tidak terlalu mepet dengan border */
+            padding: 10px; /* Tambahkan padding agar isi card terlihat lebih rapi */
+            border-radius: 15px; /* Atur border-radius untuk membuat card lebih bulat */
+        }
+        .card-container {
+            justify-content: center; /* Pusatkan konten horizontal */
+            align-items: center; /* Pusatkan konten vertikal */
+        }
+        .last-card {
+            background-color: #f3f3e6;
+            margin: 10px;
+            padding: 10px;
+        }
+        .add-item {
+            background-color: rgb(181, 57, 173);
+            margin-top: 40px;
+            margin-bottom: 40px;
+            color: #FFFFFF; /* Warna teks */
+            border: 2px solid #e8d9e2; /* Warna border */
+            border-radius: 10px; /* Sudut border */
+            padding: 5px 15px; /* Padding tombol */
+        }
+        .add-item:hover{
+            background-color: rgb(135, 17, 128); 
+        }
+        .logout-button {
+            background-color: #d63b0c; /* Warna latar belakang */
+            color: #FFFFFF; /* Warna teks */
+            border: 2px solid #ead6d2; /* Warna border */
+            border-radius: 10px; /* Sudut border */
+            margin-left: 10px;
+        }
+
+</style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+</head>
+```

@@ -3,6 +3,9 @@ from main.views import show_main, create_item, show_xml, show_json, show_xml_by_
 from main.views import register 
 from main.views import login_user 
 from main.views import logout_user
+from main.views import edit_item
+from main.views import delete_item
+from main.views import increase_amount,decrease_amount
 
 app_name = 'main'
 
@@ -16,5 +19,8 @@ urlpatterns = [
     path('register/', register, name='register'), 
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
-    
+    path('edit-product/<int:id>', edit_item, name='edit_item'),
+    path('delete/<int:id>', delete_item, name='delete_item'),
+    path('increase_amount/<int:id>/', increase_amount, name='increase_amount'),
+    path('decrease_amount/<int:id>/', decrease_amount, name='decrease_amount'),
 ]

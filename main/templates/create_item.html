@@ -1,6 +1,47 @@
 {% extends 'base.html' %} 
 
 {% block content %}
+<head>
+<style>
+    h1 {
+        text-align: center; /* Pusatkan teks horizontal */
+        margin-bottom: 30px;
+        margin-top: 15px;
+        font-family: 'Poppins';
+    }
+    body{
+        background-color: #d8bfcf;
+    }
+    form {
+        max-width: 500px; /* Atur lebar maksimum form */
+        margin: 0 auto; /* Pusatkan form horizontal */
+        padding: 20px; /* Tambahkan padding untuk mengurangi tampilan kotak */
+        border-radius: 20px; /* Tambahkan sudut bulat pada form */
+        background-color: #efe8ef; /* Atur latar belakang form */
+    }
+
+    table {
+        width: 100%; /* Isi form penuh lebar */
+    }
+
+    table tr td {
+        padding: 10px; /* Tambahkan padding pada sel form */
+    }
+
+    input[type="submit"] {
+        background-color: #8d3b6b; /* Atur warna latar belakang tombol */
+        color: #FFFFFF; /* Atur warna teks tombol */
+        border: 2px solid #dad1db; /* Atur border tombol */
+        border-radius: 10px; /* Tambahkan sudut bulat pada tombol */
+        padding: 10px 20px; /* Tambahkan padding pada tombol */
+        display: block; /* Ubah tombol menjadi elemen blok agar teksnya di tengah */
+    }
+    
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
 <h1>Add New Item</h1>
 
 <form method="POST">

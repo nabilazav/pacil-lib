@@ -5,10 +5,73 @@
 {% endblock meta %}
 
 {% block content %}
+{% load static %}
+<head>
+<style>
+     .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* vertikal */
+        align-items: center; /*  horizontal */
+        height: 100vh;
+
+    }
+    body {
+        display: flex;
+        place-items: center start;
+        font-family: 'Poppins';
+        background-image: url("{% static 'lib.jpg' %}");
+        background-size: cover;
+        
+    }
+
+    h1 {
+        font-weight: bold; 
+        text-align: center; /* Teks menjadi terpusat secara horizontal */
+        color: #3d154e;
+        position: absolute;
+        top: 50px; /* Menggeser elemen ke atas */
+        left: 50%; /* Memposisikan elemen secara horizontal di tengah */
+        transform: translate(-50%, 0);
+        font-size:75px;
+
+    }
+    .login {
+        background-color: rgb(244, 236, 255);
+        padding: 50px;
+        border-radius: 100px;
+        position: absolute;
+        top: 50%; /* Menggeser elemen ke tengah vertikal */
+        left: 50%; /* Memposisikan elemen secara horizontal di tengah */
+        transform: translate(-50%, -50%); 
+    }
+    .login_btn {
+        background-color: #e2bef9; /* Warna latar belakang tombol */
+        color: #383535; /* Warna teks */
+        border: 2px solid #dad1db;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        cursor: pointer; /* Ganti kursor saat di atas tombol */
+    }
+
+    .login_btn:hover {
+        background-color: #a882c0; /* Warna latar belakang saat tombol dihover */
+    }
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<div class="container">
+        <h1>PACIL LIB.</h1>
+       
+    </div>
 
 <div class = "login">
-
-    <h1>Login</h1>
+    <h2>Login</h2>
 
     <form method="POST" action="">
         {% csrf_token %}

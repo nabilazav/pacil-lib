@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
 
-{% block meta %}
-    <title>Register</title>
-{% endblock meta %}
+{% load static %}
 
-{% block content %}  
+{% block content %}
 <head>
     <style>
         h1 {
@@ -19,13 +17,13 @@
         form {
             max-width: 500px; /* Atur lebar maksimum form */
             margin: 0 auto; /* Pusatkan form horizontal */
-            padding: 20px; 
+            padding: 20px; /* Tambahkan padding untuk mengurangi tampilan kotak */
             border-radius: 20px; /* Tambahkan sudut bulat pada form */
             background-color: #efe8ef; /* Atur latar belakang form */
         }
     
         table {
-            width: 100%; 
+            width: 100%; /* Isi form penuh lebar */
         }
     
         table tr td {
@@ -44,31 +42,20 @@
     </style>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-    
-<div class = "login">
-    
-    <h1>Register</h1>  
+    </head>
+<h1>Edit Item</h1>
 
-        <form method="POST" >  
-            {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
-            </table>  
-        </form>
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Edit Item"/>
+            </td>
+        </tr>
+    </table>
+</form>
 
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}
-
-</div>  
-
-{% endblock content %}
+{% endblock %}
