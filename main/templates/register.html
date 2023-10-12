@@ -5,6 +5,8 @@
 {% endblock meta %}
 
 {% block content %}  
+{% load static %}
+
 <head>
     <style>
         h1 {
@@ -14,7 +16,10 @@
             font-family: 'Poppins';
         }
         body{
-            background-color: #d8bfcf;
+            /*background-color: #d8bfcf;*/
+            background-image: url("{% static 'libreg.jpg' %}");
+            background-size: cover;
+
         }
         form {
             max-width: 500px; /* Atur lebar maksimum form */
